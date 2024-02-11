@@ -1,0 +1,14 @@
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\bin\Debug\net8.0\Ruguelike.exe
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\bin\Debug\net8.0\Ruguelike.deps.json
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\bin\Debug\net8.0\Ruguelike.runtimeconfig.json
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\bin\Debug\net8.0\Ruguelike.dll
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\bin\Debug\net8.0\Ruguelike.pdb
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.AssemblyInfoInputs.cache
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.AssemblyInfo.cs
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.csproj.CoreCompileInputs.cache
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.dll
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\refint\Ruguelike.dll
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.pdb
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.genruntimeconfig.cache
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\ref\Ruguelike.dll

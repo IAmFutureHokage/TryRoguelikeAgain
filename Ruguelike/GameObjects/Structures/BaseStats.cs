@@ -1,0 +1,13 @@
+﻿using Ruguelike.CustomStructures;
+
+namespace Ruguelike.GameObjects.Structures
+{
+    public struct BaseStats(char sprite, Position position, bool passable = false)
+    {
+        public Guid Id { get; } = Guid.NewGuid();
+        public char Sprite { get; set; } = sprite;
+        public Position Position { get; set; } = position;
+        public bool Passable { get; set; } = passable;
+        public bool Alive { get; set; } = true;
+    }
+}
