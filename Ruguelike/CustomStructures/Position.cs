@@ -55,7 +55,7 @@ namespace Ruguelike.CustomStructures
             return HashCode.Combine(X, Y);
         }
 
-        public readonly Position Move(Direction direction)
+        public readonly Position NewPosition(Direction direction)
         {
             return direction switch
             {

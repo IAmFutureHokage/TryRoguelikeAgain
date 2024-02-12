@@ -5,11 +5,12 @@ using Ruguelike.Weapons;
 
 namespace Ruguelike.GameObjects
 {
-    public class StaticObject(char sprite, Position position, bool passable = false) : IGameObject
+    public class StaticObject(char sprite, string title, Position position, bool passable = false) : IGameObject
     {
-        private BaseStats stats = new(sprite, position, passable);
+        private BaseStats stats = new(sprite, title, position, passable);
 
         public Guid Id => stats.Id;
+        public string Title => stats.Title;
         public char Sprite { get => stats.Sprite; set => stats.Sprite = value; }
         public Position Position { get => stats.Position; set => stats.Position = value; }
         public bool Passable { get => stats.Passable; set => stats.Passable = value; }
@@ -17,7 +18,7 @@ namespace Ruguelike.GameObjects
 
         public IGameObject CloneWithNewPosition(Position newPosition)
         {
-            return new StaticObject(stats.Sprite, newPosition, stats.Passable);
+            return new StaticObject(stats.Sprite, stats.Title, newPosition, stats.Passable);
         }
     }
 }

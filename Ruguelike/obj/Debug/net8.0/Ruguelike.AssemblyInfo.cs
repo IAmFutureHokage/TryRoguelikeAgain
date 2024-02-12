@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ruguelike")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ada1ddd140f4103f35167fea96546f3a10c42cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ruguelike")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ruguelike")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

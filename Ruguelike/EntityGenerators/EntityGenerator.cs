@@ -9,7 +9,6 @@ namespace Ruguelike.EntityGenerators
         private readonly IGameConfig config = config;
         private readonly IGameSceneRepository gameScene = gameScene;
         private readonly IPrototypeFactory factory = factory;
-        private readonly Random random = new();
 
         public void Generate(int zombiesCount, int archersCount)
         {
@@ -46,7 +45,7 @@ namespace Ruguelike.EntityGenerators
         {
             for (int i = 0; i < count; i++)
             {
-                int index = random.Next(emptyCells.Count);
+                int index = Random.Shared.Next(emptyCells.Count);
                 Position position = emptyCells[index];
                 emptyCells.RemoveAt(index);
 

@@ -21,9 +21,5 @@ namespace Ruguelike.GameCore.CollisionManager
 
             return player == finish;
         }
-        private Position GetPositionById(Guid id, string errorMessage)
-        {
-            return gameScene.FindById(id)?.Position ?? throw new InvalidOperationException(errorMessage);
-        }
     }
 }

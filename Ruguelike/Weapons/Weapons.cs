@@ -9,7 +9,7 @@ namespace Ruguelike.Weapons
         public void Attack(IDynamicObject attacker, IDynamicObject target)
         {
             target.TakeDamage(Damage);
-            Console.WriteLine($"{attacker.Id} атакует {target.Id} с помощью меча.");
+           Console.WriteLine($"{attacker.Title} атаковал {target.Title}({target.HP}) с помощью меча. ");
         }
         public Func<IGameObject, bool> GetTargetPredicate(Position playerPosition)
         {

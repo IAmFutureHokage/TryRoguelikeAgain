@@ -15,12 +15,12 @@ namespace Ruguelike.API
 
         private void InitPrototypes()
         {
-            prototypes["Wall"] = new StaticObject('#', new Position(0, 0), false);
-            prototypes["Finish"] = new StaticObject('F', new Position(0, 0), true);
+            prototypes["Wall"] = new StaticObject('#', "Wall",new Position(0, 0), false);
+            prototypes["Finish"] = new StaticObject('F', "Finish", new Position(0, 0), true);
 
-            prototypes["Player"] = new DynamicObject('P', new Position(0, 0), true, 100, new Sword());
-            prototypes["Zombie"] = new DynamicObject('Z', new Position(0, 0), true, 100, new Sword());
-            prototypes["Archer"] = new DynamicObject('A', new Position(0, 0), true, 50, new Bow());
+            prototypes["Player"] = new DynamicObject('P', "Player", new Position(0, 0), true, 100, new Sword());
+            prototypes["Zombie"] = new DynamicObject('Z', "Zombie", new Position(0, 0), true, 100, new Sword());
+            prototypes["Archer"] = new DynamicObject('A', "Archer", new Position(0, 0), true, 50, new Bow());
         }
 
         public IGameObject Create(string prototypeKey, Position position)

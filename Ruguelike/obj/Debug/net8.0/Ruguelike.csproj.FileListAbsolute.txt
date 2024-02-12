@@ -12,3 +12,4 @@ C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\refint\Rugueli
 C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.pdb
 C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.genruntimeconfig.cache
 C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\ref\Ruguelike.dll
+C:\Users\doros\Desktop\Yakov\Ruguelike\Ruguelike\obj\Debug\net8.0\Ruguelike.sourcelink.json

@@ -10,8 +10,6 @@ namespace Ruguelike.MazeGenerator
         private readonly IGameSceneRepository gameScene = gameScene;
         private readonly IPrototypeFactory factory = factory;
 
-        private readonly Random random = new();
-
         public void Generate()
         {
             bool[,] maze = new bool[config.MapWidth, config.MapHeight];
@@ -73,11 +71,11 @@ namespace Ruguelike.MazeGenerator
                         gameScene.Add(factory.Create("Wall", new Position(x, y)));
         }
 
-        private Position[] Shuffle(Position[] positions)
+        private static Position[] Shuffle(Position[] positions)
         {
             for (int i = positions.Length - 1; i > 0; i--)
             {
-                int j = random.Next(i + 1);
+                int j = Random.Shared.Next(i + 1);
                 (positions[i], positions[j]) = (positions[j], positions[i]);
             }
             return positions;

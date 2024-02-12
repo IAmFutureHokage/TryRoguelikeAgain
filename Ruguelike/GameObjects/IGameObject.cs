@@ -5,6 +5,7 @@ namespace Ruguelike.GameObjects
     public interface IGameObject
     {
         Guid Id { get; }
+        string Title { get; }
         char Sprite { get; }
         Position Position { get; }
         bool Passable { get; }

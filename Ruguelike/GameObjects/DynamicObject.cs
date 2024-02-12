@@ -5,14 +5,13 @@ using Ruguelike.Weapons;
 
 namespace Ruguelike.GameObjects
 {
-    public class DynamicObject (char sprite, Position position, bool passable, int hp, IWeapon weapon) : IGameObject, IDynamicObject
+    public class DynamicObject (char sprite, string title, Position position, bool passable, int hp, IWeapon weapon) : IGameObject, IDynamicObject
     {
-        private BaseStats stats = new(sprite, position, passable);
-        public int HP { get; set; } = hp;
-        
+        private BaseStats stats = new(sprite, title, position, passable);
+        public int HP { get; private set; } = hp;
         public IWeapon Weapon { get; } = weapon;
-
         public Guid Id => stats.Id;
+        public string Title => stats.Title;
         public char Sprite { get => stats.Sprite; set => stats.Sprite = value; }
         public Position Position { get => stats.Position; set => stats.Position = value; }
         public bool Passable { get => stats.Passable; set => stats.Passable = value; }
@@ -26,7 +25,8 @@ namespace Ruguelike.GameObjects
         public void Move(Direction direction, Func<Position, bool> canMove)
         {
             if (!Alive) { return; }
-            Position newPosition = Position.Move(direction);
+
+            Position newPosition = Position.NewPosition(direction);
 
             if (canMove(newPosition)) { Position = newPosition; }
         }
@@ -34,15 +34,16 @@ namespace Ruguelike.GameObjects
         {
             if (!Alive) { return; }
             HP -= damage;
-            if (HP < 0)
+            if (HP < 1)
             {
+                HP = 0;
                 Alive = false;
                 Sprite = '†';
             }
         }
         public IGameObject CloneWithNewPosition(Position newPosition)
         {
-            return new DynamicObject(stats.Sprite, newPosition, stats.Passable, HP, Weapon);
+            return new DynamicObject(stats.Sprite, stats.Title, newPosition, stats.Passable, HP, Weapon);
         }
     }
 }
