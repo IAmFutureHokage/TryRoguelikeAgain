@@ -1,9 +1,7 @@
-﻿using Ruguelike.API;
-using Ruguelike.CustomStructures;
+﻿using Ruguelike.CustomStructures;
 using Ruguelike.GameObjects.Structures;
-using Ruguelike.Weapons;
 
-namespace Ruguelike.GameObjects
+namespace Ruguelike.GameObjects.StaticObject
 {
     public class StaticObject(char sprite, string title, Position position, bool passable = false) : IGameObject
     {

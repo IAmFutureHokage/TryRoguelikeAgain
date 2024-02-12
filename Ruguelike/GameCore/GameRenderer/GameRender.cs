@@ -47,5 +47,4 @@ namespace Ruguelike.GameCore.GameRenderer
             Console.CursorVisible = false;
         }
     }
-
 }

@@ -1,27 +1,33 @@
-﻿using Ruguelike.GameCore.CollisionManager;
+﻿using Ruguelike.GameCore.AutonomyObjectsManager;
+using Ruguelike.GameCore.CollisionManager;
+using Ruguelike.GameCore.EventManager;
 using Ruguelike.GameCore.GameController;
 using Ruguelike.GameCore.GameInitializer;
 using Ruguelike.GameCore.GameRenderer;
-using Ruguelike.GameSceneRepository;
 
 namespace Ruguelike.GameCore.GameLoop
 {
-    public class GameLoop(IGameConfig config, ICollisionManager collisionManager, IGameRender renderer, IGameController controller, IGameInitializer initializer) : IGameLoop
+    public class GameLoop(IGameConfig config, ICollisionManager collisionManager, IGameRender renderer, IGameController controller, IGameInitializer initializer, IAutonomyObjectsManager autonomyManager, IEventManager eventManager) : IGameLoop
     {
         private readonly IGameConfig config = config;
         private readonly ICollisionManager collisionManager = collisionManager;
         private readonly IGameRender renderer = renderer;
         private readonly IGameController controller = controller;
         private readonly IGameInitializer initializer = initializer;
+        private readonly IAutonomyObjectsManager autonomyObjectsManager = autonomyManager;
+        private readonly IEventManager eventManager = eventManager;
 
         public void Run()
         {
+            eventManager.UpdateSenders();
             while (!config.GameOver)
             {
                 CheckFinished();
-                renderer.Render();
-                var key = Console.ReadKey(true).Key;
 
+                renderer.Render();
+                autonomyObjectsManager.UpdateAll();
+
+                var key = Console.ReadKey(true).Key;
                 controller.ProcessInput(key);
             }
             OnGameOver();
@@ -29,7 +35,10 @@ namespace Ruguelike.GameCore.GameLoop
         
         private void CheckFinished() 
         {
-            if (collisionManager.CheckCollision(config.PlayerId, config.FinishId)){initializer.Init(); }
+            if (collisionManager.CheckCollision(config.PlayerId, config.FinishId)){
+                initializer.Init();
+                eventManager.UpdateSenders();
+            }
         }
         private static void OnGameOver()
         {

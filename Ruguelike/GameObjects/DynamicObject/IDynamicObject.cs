@@ -1,7 +1,7 @@
 ﻿using Ruguelike.CustomStructures;
 using Ruguelike.Weapons;
 
-namespace Ruguelike.GameObjects
+namespace Ruguelike.GameObjects.DynamicObject
 {
     public interface IDynamicObject : IGameObject
     {

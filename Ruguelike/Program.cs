@@ -1,6 +1,7 @@
 ﻿using Ruguelike;
 using Ruguelike.API;
 using Ruguelike.GameCore;
+using Ruguelike.GameCore.AutonomyObjectsManager;
 using Ruguelike.GameCore.CollisionManager;
 using Ruguelike.GameCore.EventManager;
 using Ruguelike.GameCore.GameController;
@@ -24,15 +25,13 @@ class Program
         initializer.Init();
 
         IEventManager eventManager = new EventManager(gameScene);
-        eventManager.UpdateSenders();
 
-        Logger logger = new();
-        eventManager.SubscribeToAttack(logger.LogAttack);
 
         IGameRender gameRender = new GameRender(gameScene, config);
         ICollisionManager collisionManager = new CollisionManager(gameScene);
         IGameController gameController = new GameController(config, gameScene, collisionManager);
-        IGameLoop gameLoop = new GameLoop(config, collisionManager, gameRender, gameController, initializer);
+        IAutonomyObjectsManager autonomyManager = new AutonomyObjectsManager(gameScene, factory, eventManager, collisionManager);
+        IGameLoop gameLoop = new GameLoop(config, collisionManager, gameRender, gameController, initializer, autonomyManager, eventManager);
 
         gameLoop.Run();
     }

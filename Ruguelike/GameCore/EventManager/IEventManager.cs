@@ -1,11 +1,11 @@
-﻿using Ruguelike.GameObjects;
+﻿using Ruguelike.CustomStructures;
 
 namespace Ruguelike.GameCore.EventManager
 {
     public interface IEventManager
     {
-        void SubscribeToAttack(Action<IDynamicObject, IDynamicObject> subscriber);
-        void UnsubscribeFromAttack(Action<IDynamicObject, IDynamicObject> subscriber);
+        public void SubscribeToShoot(Action<Position, string> subscriber);
+        public void UnsubscribeFromShoot(Action<Position, string> subscriber);
         void UpdateSenders();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Ruguelike.GameObjects;
+﻿using Ruguelike.CustomStructures;
+using Ruguelike.GameObjects.DynamicObject;
 using Ruguelike.GameSceneRepository;
 
 namespace Ruguelike.GameCore.EventManager
@@ -6,35 +7,46 @@ namespace Ruguelike.GameCore.EventManager
     public class EventManager(IGameSceneRepository gameSceneRepository) : IEventManager
     {
         private readonly IGameSceneRepository gameSceneRepository = gameSceneRepository;
-        private Action<IDynamicObject, IDynamicObject>? onAttackSubscription;
+        private Action<Position, string>? onShootSubscription;
+        private HashSet<IDynamicObject> subscribedObjects = [];
 
-        public void SubscribeToAttack(Action<IDynamicObject, IDynamicObject> subscriber)
+
+        public void SubscribeToShoot(Action<Position, string> subscriber)
         {
-            onAttackSubscription += subscriber;
+            onShootSubscription += subscriber;
         }
 
-        public void UnsubscribeFromAttack(Action<IDynamicObject, IDynamicObject> subscriber)
+        public void UnsubscribeFromShoot(Action<Position, string> subscriber)
         {
-            onAttackSubscription -= subscriber;
+            onShootSubscription -= subscriber;
         }
 
-        public void DispatchAttack(IDynamicObject attacker, IDynamicObject target)
+        public void DispatchShoot(Position position, string bulletPrototypeName)
         {
-            onAttackSubscription?.Invoke(attacker, target);
+            onShootSubscription?.Invoke(position, bulletPrototypeName);
         }
 
         public void UpdateSenders()
         {
-            var currentDynamicObjects = gameSceneRepository.GameObjects(obj => obj is IDynamicObject).Cast<IDynamicObject>();
-            foreach (var dynamicObject in currentDynamicObjects)
+            var currentDynamicObjects = new HashSet<IDynamicObject>(gameSceneRepository.GameObjects(obj => obj is IDynamicObject).Cast<IDynamicObject>());
+
+            foreach (var oldObject in subscribedObjects.Except(currentDynamicObjects))
             {
-                dynamicObject.Weapon.OnAttack -= DispatchAttack;
+                if (oldObject.Weapon != null)
+                {
+                    oldObject.Weapon.OnShoot -= DispatchShoot;
+                }
             }
 
-            foreach (var dynamicObject in currentDynamicObjects)
+            foreach (var newObject in currentDynamicObjects.Except(subscribedObjects))
             {
-                dynamicObject.Weapon.OnAttack += DispatchAttack;
+                if (newObject.Weapon != null)
+                {
+                    newObject.Weapon.OnShoot += DispatchShoot;
+                }
             }
+
+            subscribedObjects = currentDynamicObjects;
         }
     }
 }

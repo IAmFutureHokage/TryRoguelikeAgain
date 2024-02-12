@@ -1,5 +1,8 @@
-﻿using Ruguelike.GameObjects;
+﻿using Ruguelike.CustomStructures;
+using Ruguelike.GameObjects.DynamicObject;
 using Ruguelike.Weapons;
+
+// Тут симпл фактори просто для того, чтобы паттернов побольше
 
 namespace Ruguelike.ObjectsBuilds_API.Weapons
 {
@@ -25,14 +28,20 @@ namespace Ruguelike.ObjectsBuilds_API.Weapons
             );
         }
 
-        public IWeapon CreateBow()
+        public IWeapon CreatePistol()
         {
             return new Weapon(
-                "Bow",
+                "Pistol",
                 15,
                 (attacker, target) =>
                 {
-                    target.TakeDamage(100);
+                    var direction = new Position(
+                        Math.Sign(target.Position.X - attacker.Position.X),
+                        Math.Sign(target.Position.Y - attacker.Position.Y)
+                    );
+                    var bulletStartPosition = attacker.Position + direction;
+
+                    attacker.Weapon.Shoot(bulletStartPosition, "Bullet");
                 },
                 playerPosition => gameObject =>
                 {
@@ -43,7 +52,8 @@ namespace Ruguelike.ObjectsBuilds_API.Weapons
                         return false;
 
                     bool isOnSameLine = gameObject.Position.X == playerPosition.X || gameObject.Position.Y == playerPosition.Y;
-                    bool isWithinDistance = Math.Abs(gameObject.Position.X - playerPosition.X) <= 4 || Math.Abs(gameObject.Position.Y - playerPosition.Y) <= 4;
+                    bool isWithinDistance = Math.Abs(gameObject.Position.X - playerPosition.X) <= 5 && Math.Abs(gameObject.Position.Y - playerPosition.Y) <= 5;
+
 
                     return isOnSameLine && isWithinDistance;
                 }

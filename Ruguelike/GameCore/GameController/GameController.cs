@@ -1,8 +1,7 @@
 ﻿using Ruguelike.CustomStructures;
 using Ruguelike.GameCore.CollisionManager;
-using Ruguelike.GameObjects;
+using Ruguelike.GameObjects.DynamicObject;
 using Ruguelike.GameSceneRepository;
-using System.Dynamic;
 
 namespace Ruguelike.GameCore.GameController
 {

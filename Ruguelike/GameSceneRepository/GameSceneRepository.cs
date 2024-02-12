@@ -31,5 +31,4 @@ namespace Ruguelike.GameSceneRepository
             gameObjects.Clear();
         }
     }
-
 }

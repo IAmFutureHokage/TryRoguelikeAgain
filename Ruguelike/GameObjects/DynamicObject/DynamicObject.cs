@@ -1,9 +1,8 @@
-﻿using Ruguelike.API;
-using Ruguelike.CustomStructures;
+﻿using Ruguelike.CustomStructures;
 using Ruguelike.GameObjects.Structures;
 using Ruguelike.Weapons;
 
-namespace Ruguelike.GameObjects
+namespace Ruguelike.GameObjects.DynamicObject
 {
     public class DynamicObject(char sprite, string title, Position position, bool passable, int hp, IWeapon weapon) : IGameObject, IDynamicObject
     {
