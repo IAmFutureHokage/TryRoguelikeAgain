@@ -29,7 +29,7 @@ namespace Ruguelike.GameCore.GameLoop
         
         private void CheckFinished() 
         {
-            if (collisionManager.CheckFinishReached(config.PlayerId, config.FinishId)){initializer.Init(); }
+            if (collisionManager.CheckCollision(config.PlayerId, config.FinishId)){initializer.Init(); }
         }
         private static void OnGameOver()
         {

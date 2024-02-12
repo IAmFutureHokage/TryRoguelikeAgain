@@ -1,15 +1,17 @@
 ﻿using Ruguelike.CustomStructures;
 using Ruguelike.GameObjects;
-using Ruguelike.Weapons;
+using Ruguelike.ObjectsBuilds_API.Weapons;
 
 namespace Ruguelike.API
 {
     public class PrototypeFactory : IPrototypeFactory
     {
+        private readonly IWeaponFactory weaponFactory;
         private readonly Dictionary<string, IGameObject> prototypes = [];
 
-        public PrototypeFactory()
+        public PrototypeFactory(IWeaponFactory weaponFactory)
         {
+            this.weaponFactory = weaponFactory;
             InitPrototypes();
         }
 
@@ -18,9 +20,9 @@ namespace Ruguelike.API
             prototypes["Wall"] = new StaticObject('#', "Wall",new Position(0, 0), false);
             prototypes["Finish"] = new StaticObject('F', "Finish", new Position(0, 0), true);
 
-            prototypes["Player"] = new DynamicObject('P', "Player", new Position(0, 0), true, 100, new Sword());
-            prototypes["Zombie"] = new DynamicObject('Z', "Zombie", new Position(0, 0), true, 100, new Sword());
-            prototypes["Archer"] = new DynamicObject('A', "Archer", new Position(0, 0), true, 50, new Bow());
+            prototypes["Player"] = new DynamicObject('P', "Player", new Position(0, 0), true, 100, weaponFactory.CreateSword());
+            prototypes["Zombie"] = new DynamicObject('Z', "Zombie", new Position(0, 0), true, 100, weaponFactory.CreateSword());
+            prototypes["Archer"] = new DynamicObject('A', "Archer", new Position(0, 0), true, 50, weaponFactory.CreateBow());
         }
 
         public IGameObject Create(string prototypeKey, Position position)

@@ -1,23 +1,22 @@
 ﻿using Ruguelike;
 using Ruguelike.API;
-using Ruguelike.CustomStructures;
-using Ruguelike.EntityGenerators;
 using Ruguelike.GameCore.CollisionManager;
 using Ruguelike.GameCore.GameController;
 using Ruguelike.GameCore.GameInitializer;
 using Ruguelike.GameCore.GameLoop;
 using Ruguelike.GameCore.GameRenderer;
-using Ruguelike.GameObjects;
 using Ruguelike.GameSceneRepository;
-using Ruguelike.MazeGenerator;
+using Ruguelike.ObjectsBuilds_API.Weapons;
 
 class Program
 {
     static void Main()
     {
         IGameConfig config = new GameConfig(50, 20);
+
         IGameSceneRepository gameScene = new GameSceneRepository();
-        IPrototypeFactory factory = new PrototypeFactory();
+        IWeaponFactory weaponFactory = new WeaponFactory();
+        IPrototypeFactory factory = new PrototypeFactory(weaponFactory);
 
         IGameInitializer initializer = new GameInitializer(config, gameScene, factory);
         initializer.Init();

@@ -5,6 +5,6 @@ namespace Ruguelike.GameCore.CollisionManager
     public interface ICollisionManager
     {
         bool CanMove(Position position);
-        bool CheckFinishReached(Guid playerId, Guid finishId);
+        bool CheckCollision(Guid object1Id, Guid object2Id);
     }
 }

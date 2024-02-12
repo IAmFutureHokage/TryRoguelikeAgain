@@ -14,12 +14,12 @@ namespace Ruguelike.GameCore.CollisionManager
             return !objects.Any(obj => !obj.Passable);
         }
 
-        public bool CheckFinishReached(Guid playerId, Guid finishId)
+        public bool CheckCollision(Guid object1Id, Guid object2Id)
         {
-            Position player = gameScene.FindById(playerId)?.Position ?? throw new InvalidOperationException("Игрока нет на карте");
-            Position finish = gameScene.FindById(finishId)?.Position ?? throw new InvalidOperationException("Финиша нет на карте");
+            Position object1 = gameScene.FindById(object1Id)?.Position ?? throw new InvalidOperationException("На карте нет первого объекта");
+            Position object2 = gameScene.FindById(object2Id)?.Position ?? throw new InvalidOperationException("На карте нет второго объекта");
 
-            return player == finish;
+            return object1 == object2;
         }
     }
 }
