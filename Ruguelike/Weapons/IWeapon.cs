@@ -7,5 +7,6 @@ namespace Ruguelike.Weapons
     {
         void Attack(IDynamicObject attacker, IDynamicObject target);
         Func<IGameObject, bool> GetTargetPredicate(Position playerPosition);
+        public event Action<IDynamicObject, IDynamicObject> OnAttack;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Ruguelike;
 using Ruguelike.API;
+using Ruguelike.GameCore;
 using Ruguelike.GameCore.CollisionManager;
+using Ruguelike.GameCore.EventManager;
 using Ruguelike.GameCore.GameController;
 using Ruguelike.GameCore.GameInitializer;
 using Ruguelike.GameCore.GameLoop;
@@ -20,6 +22,12 @@ class Program
 
         IGameInitializer initializer = new GameInitializer(config, gameScene, factory);
         initializer.Init();
+
+        IEventManager eventManager = new EventManager(gameScene);
+        eventManager.UpdateSenders();
+
+        Logger logger = new();
+        eventManager.SubscribeToAttack(logger.LogAttack);
 
         IGameRender gameRender = new GameRender(gameScene, config);
         ICollisionManager collisionManager = new CollisionManager(gameScene);

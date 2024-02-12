@@ -13,7 +13,6 @@ namespace Ruguelike.ObjectsBuilds_API.Weapons
                 (attacker, target) =>
                 {
                     target.TakeDamage(20);
-                    Console.WriteLine($"{attacker.Title} атаковал {target.Title}({target.HP}) с помощью меча.");
                 },
                 playerPosition => gameObject =>
                 {
@@ -33,7 +32,7 @@ namespace Ruguelike.ObjectsBuilds_API.Weapons
                 15,
                 (attacker, target) =>
                 {
-                    Console.WriteLine($"{attacker.Id} атакует {target.Id} с помощью лука.");
+                    target.TakeDamage(100);
                 },
                 playerPosition => gameObject =>
                 {
@@ -44,7 +43,7 @@ namespace Ruguelike.ObjectsBuilds_API.Weapons
                         return false;
 
                     bool isOnSameLine = gameObject.Position.X == playerPosition.X || gameObject.Position.Y == playerPosition.Y;
-                    bool isWithinDistance = Math.Abs(gameObject.Position.X - playerPosition.X) <= 5 || Math.Abs(gameObject.Position.Y - playerPosition.Y) <= 5;
+                    bool isWithinDistance = Math.Abs(gameObject.Position.X - playerPosition.X) <= 4 || Math.Abs(gameObject.Position.Y - playerPosition.Y) <= 4;
 
                     return isOnSameLine && isWithinDistance;
                 }

@@ -5,7 +5,7 @@ using Ruguelike.Weapons;
 
 namespace Ruguelike.GameObjects
 {
-    public class DynamicObject (char sprite, string title, Position position, bool passable, int hp, IWeapon weapon) : IGameObject, IDynamicObject
+    public class DynamicObject(char sprite, string title, Position position, bool passable, int hp, IWeapon weapon) : IGameObject, IDynamicObject
     {
         private BaseStats stats = new(sprite, title, position, passable);
         public int HP { get; private set; } = hp;
