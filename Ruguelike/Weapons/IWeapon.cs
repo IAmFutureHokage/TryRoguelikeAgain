@@ -10,5 +10,6 @@ namespace Ruguelike.Weapons
         void Attack(IDynamicObject attacker, IDynamicObject target);
         Func<IGameObject, bool> GetTargetPredicate(Position playerPosition);
         public void Shoot(Position position, string bulletPrototypeName);
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Ruguelike;
 using Ruguelike.API;
 using Ruguelike.GameCore;
+using Ruguelike.GameCore.AiController;
 using Ruguelike.GameCore.AutonomyObjectsManager;
 using Ruguelike.GameCore.CollisionManager;
 using Ruguelike.GameCore.EventManager;
@@ -30,8 +31,9 @@ class Program
         IGameRender gameRender = new GameRender(gameScene, config);
         ICollisionManager collisionManager = new CollisionManager(gameScene);
         IGameController gameController = new GameController(config, gameScene, collisionManager);
+        IAiController aiController = new AiController(gameScene, config, collisionManager);
         IAutonomyObjectsManager autonomyManager = new AutonomyObjectsManager(gameScene, factory, eventManager, collisionManager);
-        IGameLoop gameLoop = new GameLoop(config, collisionManager, gameRender, gameController, initializer, autonomyManager, eventManager);
+        IGameLoop gameLoop = new GameLoop(config, collisionManager, gameRender, gameController, initializer, autonomyManager, eventManager, gameScene, aiController);
 
         gameLoop.Run();
     }

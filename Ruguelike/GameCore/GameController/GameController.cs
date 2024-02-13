@@ -31,7 +31,7 @@ namespace Ruguelike.GameCore.GameController
 
             if (key == ConsoleKey.Spacebar)
             {
-                var target = gameScene.GameObjects(player.Weapon.GetTargetPredicate(player.Position))
+                var target = gameScene.GameObjects(player.GetTargetPredicate())
                              .OfType<IDynamicObject>().FirstOrDefault();
 
                 if (target != null)

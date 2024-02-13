@@ -8,13 +8,16 @@ namespace Ruguelike.GameObjects.DynamicObject
     {
         private BaseStats stats = new(sprite, title, position, passable);
         public int HP { get; private set; } = hp;
+#pragma warning disable CS9124
         public IWeapon Weapon { get; } = weapon;
+#pragma warning restore CS9124
         public Guid Id => stats.Id;
         public string Title => stats.Title;
         public char Sprite { get => stats.Sprite; set => stats.Sprite = value; }
         public Position Position { get => stats.Position; set => stats.Position = value; }
         public bool Passable { get => stats.Passable; set => stats.Passable = value; }
         public bool Alive { get => stats.Alive; set => stats.Alive = value; }
+
 
         public void Attack(IDynamicObject target)
         {
@@ -40,6 +43,12 @@ namespace Ruguelike.GameObjects.DynamicObject
                 Sprite = '†';
             }
         }
+
+        public Func<IGameObject, bool> GetTargetPredicate()
+        {
+            return weapon.GetTargetPredicate(Position);
+        }
+
         public IGameObject CloneWithNewPosition(Position newPosition)
         {
             return new DynamicObject(stats.Sprite, stats.Title, newPosition, stats.Passable, HP, Weapon);
